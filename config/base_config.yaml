@@ -1,0 +1,5 @@
+BaseConfig:
+  - interfaceName: can0
+    dbcFileName: /home/maximilian/Git/can_waveform_generator/dbc/test.dbc
+    customWaveFile: /home/maximilian/Git/can_waveform_generator/config/Wave/can0.yaml
+  

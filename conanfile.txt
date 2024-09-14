@@ -1,0 +1,12 @@
+[requires]
+dbcppp/3.2.6
+boost/1.80.0
+yaml-cpp/0.8.0
+
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout

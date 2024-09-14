@@ -1,0 +1,50 @@
+waveConfig:
+  updateDuration:
+    unit: ms
+    duration: 500
+
+  waveForms:
+    - Set:
+        Typ: single
+        message:
+          messageName: steering_angle
+          messageSignals:
+            - signalName: enable
+              signalNoise: 0
+              transformType: static
+              wave:
+                0: 0
+                100: 1
+            - signalName: angle
+              signalNoise: 0
+              transformType: linear
+              wave:
+                0: 0
+                100: 355
+                200: 155
+                300: 250
+    - Set:
+        Typ: multi
+        message:
+          parts:
+            - messageName: target_velocity_front
+              messageSignals:
+                - right_front
+                - left_front
+            - messageName: target_velocity_rear
+              messageSignals:
+                - right_rear
+                - left_rear
+          partsConfig:
+            signalNoise: 0
+            transformType: linear
+            wave:
+                0: 0
+                100: 10000
+                200: 85000
+                300: 11000
+
+
+
+
+

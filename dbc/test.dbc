@@ -1,0 +1,19 @@
+VERSION ""
+
+
+BS_:
+
+BU_: Steering Motor
+
+BO_ 10 steering_angle: 3 Steering 
+    SG_ enable : 0|1@1+ (1,0) [0|0] "" Steering
+    SG_ angle : 1|10@1+ (1,0) [0|360] "" Steering
+
+BO_ 20 target_velocity_front: 8 Motor
+    SG_ right_front : 0|32@1+ (1,0) [0|100000] "" Motor
+    SG_ left_front : 32|32@1+ (1,0) [0|100000] "" Motor
+
+BO_ 30 target_velocity_rear: 8 Motor
+    SG_ right_rear : 0|32@1+ (1,0) [0|100000] "" Motor
+    SG_ left_rear : 32|32@1+ (1,0) [0|100000] "" Motor
+
