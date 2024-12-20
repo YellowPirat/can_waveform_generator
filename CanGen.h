@@ -164,7 +164,7 @@ class CanGen {
                                     double deltaX = (double)(itMwsBegin->first - x);
                                     double deltaY = (double)(itMwsBegin->second - y);
                                     waveSignalConfig.wave.m = deltaY / deltaX;
-                                    std::cout << "m = " << waveSignalConfig.wave.m << " - ";
+                                    std::cout << "m = " << waveSignalConfig.wave.m << " - " ;
                                     mHasCanged = true;
                                 } else {
                                     waveSignalConfig.wave.transistionTyp = TransistionTyp::staticTransistion;
@@ -174,8 +174,7 @@ class CanGen {
                             }
                         } else {
                             if(waveSignalConfig.wave.transistionTyp ==  TransistionTyp::linearTransistion) {
-                               waveSignalConfig.wave.value += waveSignalConfig.wave.m;
-                               //std::cout << "f(" << m_globalStep << ") = " << waveSignalConfig.wave.value << std::endl;
+                                waveSignalConfig.wave.value += waveSignalConfig.wave.m;
                             }
                         }
  
@@ -258,7 +257,7 @@ class CanGen {
             boost::asio::steady_timer timer(m_io, boost::asio::chrono::milliseconds(m_globalUpdateDuration));
             timer.async_wait(std::bind(timerCallback, std::placeholders::_1, &timer));
 
-            //print();
+            print();
 
             std::cout << "Started Timer" << std::endl;
             m_io.run();
@@ -307,11 +306,7 @@ class CanGen {
                             Wave s_wave;
                             s_wave.transistionTyp = getTransistionTyp(transformType);
                             for(const auto& wave : messageSignals["wave"]) {
-                                std::string firstNum = wave.first.as<std::string>();
-                                std::string secondNum  = wave.second.as<std::string>();
-                                if(isNumber(firstNum) && isNumber(secondNum)) {
-                                    s_wave.multiWaveSteps.emplace(atoi(firstNum.c_str()), static_cast<double>(atoi(secondNum.c_str())));
-                                }
+                                s_wave.multiWaveSteps.emplace(wave.first.as<float>(), static_cast<double>(wave.second.as<float>()));
                             }
                             waveSignalConfig.wave = s_wave;
                             waveMessageConfig.signalConfig.emplace(signalName, std::move(waveSignalConfig));
@@ -332,12 +327,7 @@ class CanGen {
 
 
                         for (const auto& wave : set["Set"]["message"]["partsConfig"]["wave"]) {
-                            std::string firstNum = wave.first.as<std::string>();
-                            std::string secondNum  = wave.second.as<std::string>();
-
-                            if(isNumber(firstNum) && isNumber(secondNum)) {
-                                s_wave.multiWaveSteps.emplace(atoi(firstNum.c_str()), static_cast<double>(atoi(secondNum.c_str())));
-                            }
+                            s_wave.multiWaveSteps.emplace(wave.first.as<int>(), wave.second.as<float>());
                         }
 
                         waveSignalConfig.wave = s_wave;

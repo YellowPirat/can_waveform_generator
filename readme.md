@@ -20,3 +20,10 @@ To start generating can-messages, a base-config file is required. To add a new C
 
 ## Waveform file
 A waveform file consists of a update Duration part and a waveform part. The waveform part consists of Sets. A Set has a type. If the type is single, a single CAN-Message and its CAN-Message-Signals can be described independently. If the type is multi, all the mentioned CAN-Messages in the parts have the same waveform behavior.
+
+# Use vcan
+```
+modprobe vcan
+ip link add dev vcan0 type vcan
+ip link set up vcan0
+```
